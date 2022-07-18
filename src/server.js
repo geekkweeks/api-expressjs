@@ -24,9 +24,12 @@ app.use(express.urlencoded({
 }))
 
 const db = require('./models')
+const seed = require('./models/seeds')
+
 db.sequelize
   .sync({force: true})
   .then(() => {
+    seed.userSeed()
     console.log(`database connected`)
   })
   .catch((err) => {
